@@ -1,0 +1,126 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import StepItem from '../components/StepItem.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { useTranslations } from '../i18n/ui';
+
+const lang = 'ne';
+const t = useTranslations(lang);
+
+const riderSteps = [
+  {
+    number: '०१',
+    title: 'एप डाउनलोड र प्रोफाइल सिर्जना',
+    description: 'गुगल प्ले स्टोरबाट बाटैबाटो एप इन्स्टल गर्नुहोस्। आफ्नो नेपाली मोबाइल नम्बर हानेर प्राप्त ओटिपी (OTP) मार्फत सेकेन्डमै खाता खोल्नुहोस्।',
+    icon: '/icons/ui/smartphone.svg',
+  },
+  {
+    number: '०२',
+    title: 'पिकअप र गन्तव्य चयन',
+    description: 'नक्सामा आफ्नो हालको स्थान र पुग्नुपर्ने गन्तव्य छान्नुहोस्। तपाईंलाई तत्काल यात्राको अनुमानित दूरी र समय देखाइनेछ।',
+    icon: '/icons/ui/map-pin.svg',
+  },
+  {
+    number: '०३',
+    title: 'सवारी रोज्नुहोस् र भाडा हेर्नुहोस्',
+    description: 'मोटरसाइकल, स्कुटर, अटो रिक्सा वा कारमध्ये आवश्यकता अनुसार सवारी छान्नुहोस्। पारदर्शी रूपमा निश्चित गरिएको भाडा तुरुन्तै हेर्नुहोस्।',
+    icon: '/icons/ui/bike.svg',
+  },
+  {
+    number: '०४',
+    title: 'सुरक्षित यात्रा र सहज भुक्तानी',
+    description: 'नजिकैको चालकसँग म्याच भई सुरक्षित यात्रा गर्नुहोस्। यात्रा समाप्तिमा ईसेवा, खल्ती वा नगदबाट सहजै भाडा तिर्नुहोस्।',
+    icon: '/icons/ui/check.svg',
+  },
+];
+
+const driverSteps = [
+  {
+    number: '०१',
+    title: 'चालक आवेदन फारम भर्नुहोस्',
+    description: 'बाटैबाटो एपभित्र चालक पार्टनर विकल्प रोज्नुहोस् र आफ्नो आधारभूत विवरण भर्नुहोस्।',
+    icon: '/icons/ui/shield-check.svg',
+  },
+  {
+    number: '०२',
+    title: 'कागजात प्रमाणीकरण',
+    description: 'आफ्नो सक्कल ड्राइभिङ लाइसेन्स, ब्लुबुक र नागरिकताको फोटो अपलोड गर्नुहोस्। हाम्रो टिमले केही घण्टामै रुजु गर्नेछ।',
+    icon: '/icons/ui/calendar.svg',
+  },
+  {
+    number: '०३',
+    title: 'अनलाइन हुनुहोस् र आम्दानी सुरु गर्नुहोस्',
+    description: 'प्रमाणीकरणपछि आफू अनुकुल समयमा अनलाइन भई सिन्धुलीका सहयात्रीहरूलाई सेवा दिनुहोस् र अतिरिक्त आम्दानी गर्नुहोस्।',
+    icon: '/icons/ui/wallet.svg',
+  },
+];
+---
+
+<PageLayout
+  title="कसरी चल्छ? | बाटैबाटो प्रयोग गर्ने सजिलो तरिका"
+  description="बाटैबाटो एप चलाउने चार सरल चरणहरू: डाउनलोड, गन्तव्य चयन, सवारी रोज्ने र सुरक्षित भुक्तानी। चालक साथीहरू कसरी जोडिने भन्ने विस्तृत विवरण।"
+  lang={lang}
+>
+  <section class="section how-hero-section">
+    <div class="container text-center">
+      <h1 class="heading-xl">
+        यात्रा सुरु गर्न <span class="text-gradient">चार सरल चरणहरू</span>
+      </h1>
+      <p class="lead-text text-muted" style="max-width: 650px; margin: 1.5rem auto 0;">
+        {t('how.lead')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Rider Journey Timeline -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-subheading text-center" style="margin-bottom: 3rem;">
+        <h2 class="heading-md">यात्रुहरूका लागि: सजिलो यात्राको बाटो</h2>
+      </div>
+
+      <div class="grid-4">
+        {riderSteps.map((s) => (
+          <StepItem
+            number={s.number}
+            title={s.title}
+            description={s.description}
+            icon={s.icon}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Driver Partner Journey -->
+  <section class="section driver-onboard-section" style="background: var(--bb-dark-surface);">
+    <div class="container">
+      <div class="section-subheading text-center" style="margin-bottom: 3rem;">
+        <h2 class="heading-lg">आफ्नो सवारीबाट नियमित आम्दानी गर्नुहोस्</h2>
+        <p class="lead-text text-muted" style="max-width: 640px; margin: 0.75rem auto 0;">
+          सिन्धुलीमा आफ्नो बाइक, स्कुटर, अटो वा कार चलाएर सम्मानजनक अतिरिक्त आम्दानी गर्ने अवसर।
+        </p>
+      </div>
+
+      <div class="grid-3">
+        {driverSteps.map((s) => (
+          <StepItem
+            number={s.number}
+            title={s.title}
+            description={s.description}
+            icon={s.icon}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction lang={lang} />
+</PageLayout>
+
+<style>
+  .how-hero-section {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+</style>

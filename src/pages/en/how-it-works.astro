@@ -1,0 +1,126 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import StepItem from '../../components/StepItem.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const riderSteps = [
+  {
+    number: '01',
+    title: 'Download and Sign Up',
+    description: 'Get BataiBato from the Google Play Store. Enter your mobile number to receive a one time verification code and set up your profile.',
+    icon: '/icons/ui/smartphone.svg',
+  },
+  {
+    number: '02',
+    title: 'Choose Route and Vehicle',
+    description: 'Pin your pickup location and intended destination on the map. View instant estimates for distance and arrival times.',
+    icon: '/icons/ui/map-pin.svg',
+  },
+  {
+    number: '03',
+    title: 'Select Ride and Confirm',
+    description: 'Pick motorcycle, scooter, auto rickshaw, or car. Review the upfront transparent fare in Nepalese Rupees before tapping confirm.',
+    icon: '/icons/ui/bike.svg',
+  },
+  {
+    number: '04',
+    title: 'Commute and Pay Easily',
+    description: 'Meet your verified driver, enjoy live GPS tracked travel, and settle payment conveniently via eSewa, Khalti, or cash.',
+    icon: '/icons/ui/check.svg',
+  },
+];
+
+const driverSteps = [
+  {
+    number: '01',
+    title: 'Register as Driver Partner',
+    description: 'Select the driver option inside the BataiBato application and provide your basic information and vehicle category.',
+    icon: '/icons/ui/shield-check.svg',
+  },
+  {
+    number: '02',
+    title: 'Upload Official Documents',
+    description: 'Submit photos of your valid Nepali driving license, vehicle blue book registration, and government identification.',
+    icon: '/icons/ui/calendar.svg',
+  },
+  {
+    number: '03',
+    title: 'Go Online and Start Earning',
+    description: 'Once verified by our local team, switch to online mode whenever convenient and earn steady income assisting Sindhuli commuters.',
+    icon: '/icons/ui/wallet.svg',
+  },
+];
+---
+
+<PageLayout
+  title="How It Works | Simple Guide to BataiBato"
+  description="Learn how to book rides or earn as a driver partner on BataiBato. Four simple steps from download to reaching your destination safely across Nepal."
+  lang={lang}
+>
+  <section class="section how-hero-section">
+    <div class="container text-center">
+      <h1 class="heading-xl">
+        Four Steps to a <span class="text-gradient">Smoother Journey</span>
+      </h1>
+      <p class="lead-text text-muted" style="max-width: 650px; margin: 1.5rem auto 0;">
+        {t('how.lead')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Rider Journey Timeline -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-subheading text-center" style="margin-bottom: 3rem;">
+        <h2 class="heading-md">For Commuters: Straightforward Travel</h2>
+      </div>
+
+      <div class="grid-4">
+        {riderSteps.map((s) => (
+          <StepItem
+            number={s.number}
+            title={s.title}
+            description={s.description}
+            icon={s.icon}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Driver Partner Journey -->
+  <section class="section driver-onboard-section" style="background: var(--bb-dark-surface);">
+    <div class="container">
+      <div class="section-subheading text-center" style="margin-bottom: 3rem;">
+        <h2 class="heading-lg">Earn Respectable Income with Your Vehicle</h2>
+        <p class="lead-text text-muted" style="max-width: 640px; margin: 0.75rem auto 0;">
+          Drive your motorcycle, scooter, auto rickshaw, or car in Sindhuli with flexible hours and reliable weekly payouts.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        {driverSteps.map((s) => (
+          <StepItem
+            number={s.number}
+            title={s.title}
+            description={s.description}
+            icon={s.icon}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction lang={lang} />
+</PageLayout>
+
+<style>
+  .how-hero-section {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+</style>

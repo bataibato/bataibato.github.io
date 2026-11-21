@@ -1,0 +1,140 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { useTranslations } from '../i18n/ui';
+
+const lang = 'ne';
+const t = useTranslations(lang);
+
+const generalFaqs = [
+  {
+    question: 'बाटैबाटो के हो र यसले कसरी काम गर्छ?',
+    answer: 'बाटैबाटो नेपालको स्थानीय समुदायमा आधारित आधुनिक राइड सेयरिङ मोबाइल एप हो। यसले सिन्धुली तथा आसपासका क्षेत्रहरूमा एउटै दिशातर्फ गइरहेका यात्रु र सवारी धनीहरूलाई आपसमा जोड्छ, जसले गर्दा सस्तो र भरपर्दो यात्रा सम्भव हुन्छ।',
+  },
+  {
+    question: 'बाटैबाटो कुन कुन सहरहरूमा उपलब्ध छ?',
+    answer: 'हाल बाटैबाटोको मुख्य सेवा सिन्धुली जिल्ला, विशेष गरी कमलामाई नगरपालिका, सिन्धुलीमाढी बजार, खनियाखर्क, र बीपी राजमार्ग आसपास पूर्ण रूपमा सञ्चालनमा छ। चाँडै नै जनकपुर, बर्दिबास र धुलिखेल करिडोरमा विस्तार गरिँदैछ।',
+  },
+  {
+    question: 'के बाटैबाटो एप डाउनलोड गर्न निःशुल्क हो?',
+    answer: 'हो, गुगल प्ले स्टोरबाट बाटैबाटो एप पूर्ण रूपमा निःशुल्क डाउनलोड गर्न सकिन्छ। तपाईंले यात्रा सम्पन्न गरेपछि चालकलाई तोकिएको वास्तविक भाडा मात्र तिर्नुपर्ने हुन्छ।',
+  },
+];
+
+const rideFaqs = [
+  {
+    question: 'बाटैबाटोमा कस्ता सवारी साधनहरू उपलब्ध छन्?',
+    answer: 'तपाईंले आफ्नो आवश्यकता अनुसार मोटरसाइकल, स्कुटर, तीन पाङ्ग्रे अटो रिक्सा र चार पाङ्ग्रे कार गरी चार प्रकारका सवारी साधनहरू एपबाटै बुक गर्न सक्नुहुन्छ।',
+  },
+  {
+    question: 'भाडा दर कसरी निर्धारण गरिन्छ?',
+    answer: 'भाडा दर सरकारी नियम, यात्राको तय गरिएको दूरी (किलोमिटर), र सवारीको प्रकारका आधारमा पारदर्शी तरिकाले पहिले नै तय गरिन्छ। यात्रा सुरु हुनुअघि नै मोबाइल स्क्रिनमा वास्तविक रकम देखिन्छ।',
+  },
+  {
+    question: 'के म भोलिको यात्रा आजै अग्रिम बुक गर्न सक्छु?',
+    answer: 'हो, एपमा रहेको सेड्युल फिचर प्रयोग गरी तपाईंले बिहानको बस छुट्न नदिन वा अस्पताल जाने समयका लागि २४ घण्टा अगावै राइड सेड्युल गर्न सक्नुहुन्छ।',
+  },
+];
+
+const safetyFaqs = [
+  {
+    question: 'चालकहरूको सुरक्षा जाँच कसरी गरिन्छ?',
+    answer: 'प्रत्येक चालकको सक्कल सरकारी ड्राइभिङ लाइसेन्स, सवारी दर्ता किताब (ब्लुबुक), र व्यक्तिगत कागजातको भौतिक तथा डिजिटल रुजु गरेपछि मात्र सिस्टममा अनुमति दिइन्छ।',
+  },
+  {
+    question: 'के म आफ्नो यात्राको प्रत्यक्ष मार्ग परिवारलाई पठाउन सक्छु?',
+    answer: 'हो, एपभित्र लाइभ जीपीएस ट्र्याकिङ लिंक हुन्छ, जसलाई तपाईंले ह्वाट्सएप वा एसएमएस मार्फत परिवारका सदस्यलाई एकै क्लिकमा सेयर गर्न सक्नुहुन्छ।',
+  },
+  {
+    question: 'के मोटरसाइकल यात्रामा हेल्मेट अनिवार्य छ?',
+    answer: 'हो, यात्रुको पूर्ण सुरक्षाका लागि हाम्रा सबै मोटरसाइकल तथा स्कुटर चालकहरूले यात्रुका लागि छुट्टै सफा हेल्मेट उपलब्ध गराउनु अनिवार्य गरिएको छ।',
+  },
+];
+
+const accountFaqs = [
+  {
+    question: 'भुक्तानी कसरी गर्न सकिन्छ?',
+    answer: 'तपाईंले डिजिटल माध्यम जस्तै ईसेवा (eSewa), खल्ती (Khalti), प्रत्यक्ष मोबाइल बैंकिङ, वा सिधै चालकलाई नगद दिएर सजिलै भुक्तानी गर्न सक्नुहुन्छ।',
+  },
+  {
+    question: 'म आफ्नो खाता वा व्यक्तिगत डाटा कसरी हटाउन सक्छु?',
+    answer: 'एपको सेटिङ्स मेनुमा गएर "खाता मेटाउनुहोस्" (Delete Account) विकल्प छान्नुहोस् वा support@bataibato.com मा आफ्नो दर्ता गरिएको मोबाइल नम्बर सहित अनुरोध पठाउनुहोस्। तपाईंको सम्पूर्ण डाटा ४८ घण्टाभित्र सुरक्षित रूपमा हटाइनेछ।',
+  },
+];
+
+const allFaqs = [...generalFaqs, ...rideFaqs, ...safetyFaqs, ...accountFaqs];
+
+const faqSchemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: allFaqs.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<PageLayout
+  title="बारम्बार सोधिने प्रश्नहरू | बाटैबाटो मद्दत केन्द्र"
+  description="बाटैबाटो प्रयोग गर्ने तरिका, भाडा दर, चालक प्रमाणिकरण, सुरक्षा, डिजिटल भुक्तानी र खाता व्यवस्थापन सम्बन्धी सम्पूर्ण प्रश्नोत्तरहरू।"
+  lang={lang}
+  schemaType="FAQPage"
+  schemaData={faqSchemaData}
+>
+  <section class="section faq-hero-section">
+    <div class="container text-center">
+      <h1 class="heading-xl">
+        तपाईंको जिज्ञासाको <span class="text-gradient">सहज उत्तर</span>
+      </h1>
+      <p class="lead-text text-muted" style="max-width: 650px; margin: 1.5rem auto 0;">
+        बाटैबाटो एप सञ्चालन, सवारी बुकिङ र सुरक्षा सम्बन्धी आम प्रश्नहरूको स्पष्ट समाधान।
+      </p>
+    </div>
+  </section>
+
+  <section class="section faq-list-section" style="padding-top: 0;">
+    <div class="container container-narrow">
+      <div class="faq-category-block" style="margin-bottom: 3.5rem;">
+        <h2 class="heading-md" style="margin-bottom: 1.5rem; color: var(--bb-red-400);">
+          १. सामान्य जानकारी (General Questions)
+        </h2>
+        <FAQAccordion items={generalFaqs} />
+      </div>
+
+      <div class="faq-category-block" style="margin-bottom: 3.5rem;">
+        <h2 class="heading-md" style="margin-bottom: 1.5rem; color: var(--bb-red-400);">
+          २. राइड बुकिङ र सवारी प्रकार (Rides & Fleet)
+        </h2>
+        <FAQAccordion items={rideFaqs} />
+      </div>
+
+      <div class="faq-category-block" style="margin-bottom: 3.5rem;">
+        <h2 class="heading-md" style="margin-bottom: 1.5rem; color: var(--bb-red-400);">
+          ३. सुरक्षा र गोपनीयता (Safety & Privacy)
+        </h2>
+        <FAQAccordion items={safetyFaqs} />
+      </div>
+
+      <div class="faq-category-block">
+        <h2 class="heading-md" style="margin-bottom: 1.5rem; color: var(--bb-red-400);">
+          ४. भुक्तानी र खाता व्यवस्थापन (Payment & Account)
+        </h2>
+        <FAQAccordion items={accountFaqs} />
+      </div>
+    </div>
+  </section>
+
+  <CallToAction lang={lang} />
+</PageLayout>
+
+<style>
+  .faq-hero-section {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+</style>

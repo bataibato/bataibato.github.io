@@ -1,0 +1,81 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const { number, title, description, icon } = Astro.props;
+---
+
+<div class="step-milestone-box surface-panel reveal-item">
+  <div class="step-top-row">
+    <div class="step-badge-number">{number}</div>
+    <div class="step-icon-wrap">
+      <img src={icon} alt="" width="24" height="24" loading="lazy" class="lucide-icon-red" />
+    </div>
+  </div>
+  <h3 class="step-title heading-md" style="font-size: 1.25rem;">{title}</h3>
+  <p class="step-desc text-muted">{description}</p>
+</div>
+
+<style>
+  .step-milestone-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .step-milestone-box:hover {
+    transform: translateY(-3px);
+    border-color: #cbd5e1;
+    box-shadow: var(--bb-shadow-hover);
+  }
+
+  .step-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  .step-badge-number {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--bb-red-600);
+    background: var(--bb-red-50);
+    border: 1px solid var(--bb-red-100);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--bb-radius-md);
+    background: #f8fafc;
+    border: 1px solid var(--bb-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-title {
+    margin-top: 0;
+    margin-bottom: 0.65rem;
+    color: var(--bb-text);
+  }
+
+  .step-desc {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+</style>

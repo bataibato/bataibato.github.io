@@ -1,0 +1,78 @@
+@import "open-props/normalize";
+
+:root {
+  /* BataiBato Red Brand Palette */
+  --bb-red-50:  #fef2f2;
+  --bb-red-100: #fee2e2;
+  --bb-red-200: #fecaca;
+  --bb-red-300: #fca5a5;
+  --bb-red-400: #f87171;
+  --bb-red-500: #ef4444;
+  --bb-red-600: #dc2626;  /* Primary brand red */
+  --bb-red-700: #b91c1c;
+  --bb-red-800: #991b1b;
+  --bb-red-900: #7f1d1d;
+
+  /* Clean Light Theme Only */
+  --bb-bg:          #ffffff;
+  --bb-bg-surface:  #ffffff;
+  --bb-bg-elevated: #f8fafc;
+  --bb-bg-subtle:   #f1f5f9;
+  --bb-border:      #e2e8f0;
+  --bb-border-subtle: #f1f5f9;
+  --bb-text:        #0f172a;
+  --bb-text-muted:  #64748b;
+  --bb-text-light:  #94a3b8;
+  --bb-accent:      var(--bb-red-600);
+  --bb-accent-hover:var(--bb-red-700);
+  --bb-gradient:    linear-gradient(135deg, #dc2626, #ef4444);
+
+  /* Typography */
+  --bb-font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Mukta', sans-serif;
+  --bb-font-nepali: 'Mukta', 'Inter', system-ui, sans-serif;
+
+  /* Radii and shadows */
+  --bb-radius-sm: 8px;
+  --bb-radius-md: 12px;
+  --bb-radius-lg: 18px;
+  --bb-radius-full: 9999px;
+  --bb-shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --bb-shadow-panel: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --bb-shadow-hover: 0 12px 24px -4px rgba(0, 0, 0, 0.08), 0 6px 12px -3px rgba(220, 38, 38, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bb-bg);
+  color: var(--bb-text);
+  font-family: var(--bb-font);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--bb-red-100);
+  color: var(--bb-red-800);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0a0a" />
+      <stop offset="50%" stop-color="#141414" />
+      <stop offset="100%" stop-color="#240707" />
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f87171" />
+      <stop offset="100%" stop-color="#dc2626" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="950" cy="315" r="320" fill="url(#glow)" />
+  <g transform="translate(100, 140)">
+    <rect width="120" height="40" rx="20" fill="#260b0b" stroke="#ef4444" stroke-width="2" />
+    <text x="60" y="26" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#fca5a5" text-anchor="middle">SINDHULI, NEPAL</text>
+    <text x="0" y="130" font-family="system-ui, sans-serif" font-size="76" font-weight="900" fill="#fafafa">Batai<tspan fill="url(#redGrad)">Bato</tspan></text>
+    <text x="0" y="190" font-family="system-ui, sans-serif" font-size="34" font-weight="600" fill="#fca5a5">बाटैबाटो — नेपालको आफ्नै राइड सेयरिङ एप</text>
+    <text x="0" y="260" font-family="system-ui, sans-serif" font-size="24" font-weight="400" fill="#a3a3a3">Share the Ride, Share the Journey.</text>
+    <text x="0" y="300" font-family="system-ui, sans-serif" font-size="20" font-weight="400" fill="#737373">Starting from Sindhuli, connecting communities across Nepal.</text>
+  </g>
+  <g transform="translate(850, 240)">
+    <circle cx="60" cy="120" r="45" stroke="#ef4444" stroke-width="12" fill="#141414" />
+    <circle cx="220" cy="120" r="45" stroke="#ef4444" stroke-width="12" fill="#141414" />
+    <path d="M60 120L110 50H170L220 120" stroke="#fafafa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <path d="M110 50L150 100H220" stroke="url(#redGrad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <path d="M170 30H200" stroke="#fafafa" stroke-width="10" stroke-linecap="round" />
+  </g>
+</svg>

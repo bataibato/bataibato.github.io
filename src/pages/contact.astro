@@ -1,0 +1,144 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { useTranslations } from '../i18n/ui';
+
+const lang = 'ne';
+const t = useTranslations(lang);
+---
+
+<PageLayout
+  title="सम्पर्क | बाटैबाटो सिन्धुली सहयोग केन्द्र"
+  description="बाटैबाटो टिमसँग सम्पर्क गर्नुहोस्। सिन्धुली कार्यालयको ठेगाना, आधिकारिक इमेल, चालक पार्टनर सोधपुछ तथा यात्रु सहायता।"
+  lang={lang}
+>
+  <section class="section contact-hero-section">
+    <div class="container text-center">
+      <h1 class="heading-xl">
+        हामी तपाईंको <span class="text-gradient">सहयोगका लागि</span> सधैं तयार छौं
+      </h1>
+      <p class="lead-text text-muted" style="max-width: 650px; margin: 1.5rem auto 0;">
+        कुनै जिज्ञासा, सुझाव वा चालक सहकार्यका लागि तलको फारम भर्नुहोस् वा सिधै सम्पर्क गर्नुहोस्।
+      </p>
+    </div>
+  </section>
+
+  <section class="section contact-content-section" style="padding-top: 0;">
+    <div class="container">
+      <div class="contact-split-grid">
+        <!-- Contact Form Side -->
+        <div class="form-column">
+          <ContactForm lang={lang} />
+        </div>
+
+        <!-- Info Column Side -->
+        <div class="info-column">
+          <div class="contact-info-block surface-panel">
+            <h2 class="heading-md" style="margin-top: 0; margin-bottom: 1.5rem;">सम्पर्क विवरण</h2>
+
+            <div class="info-row">
+              <div class="info-icon-box">
+                <img src="/icons/ui/map-pin.svg" alt="" width="22" height="22" />
+              </div>
+              <div>
+                <strong class="info-title">कार्यालय ठेगाना</strong>
+                <p class="info-detail text-muted">कमलामाई नगरपालिका, सिन्धुलीमाढी, बागमती प्रदेश, नेपाल</p>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon-box">
+                <img src="/icons/ui/mail.svg" alt="" width="22" height="22" />
+              </div>
+              <div>
+                <strong class="info-title">आधिकारिक इमेल</strong>
+                <p class="info-detail text-muted">support@bataibato.com</p>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon-box">
+                <img src="/icons/ui/clock.svg" alt="" width="22" height="22" />
+              </div>
+              <div>
+                <strong class="info-title">सञ्चालन समय</strong>
+                <p class="info-detail text-muted">आइतबार देखि शुक्रबार: बिहान ९ बजे देखि साँझ ६ बजेसम्म</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Driver Support Callout -->
+          <div class="driver-callout-box surface-panel" style="margin-top: 1.75rem; border-color: rgba(239, 68, 68, 0.3);">
+            <h3 class="heading-md" style="font-size: 1.2rem; margin: 0 0 0.5rem 0;">के तपाईं सिन्धुलीमा चालक पार्टनर बन्न चाहनुहुन्छ?</h3>
+            <p class="text-muted" style="margin: 0; font-size: 0.95rem; line-height: 1.6;">
+              आफ्नो सवारीको ब्लुबुक र लाइसेन्स साथमा लिई सिन्धुलीमाढी कार्यालयमा सिधै आउन सक्नुहुन्छ वा एपबाटै फारम भर्न सक्नुहुन्छ।
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .contact-hero-section {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .contact-split-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 3rem;
+  }
+
+  .contact-info-block {
+    padding: 2.5rem 2rem;
+  }
+
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .info-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .info-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--bb-radius-md);
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .info-icon-box img {
+    filter: invert(70%) sepia(80%) saturate(600%) hue-rotate(340deg);
+  }
+
+  .info-title {
+    display: block;
+    color: var(--bb-light);
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .info-detail {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .contact-split-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

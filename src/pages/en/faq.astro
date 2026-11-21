@@ -1,0 +1,140 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const generalFaqs = [
+  {
+    question: 'What is BataiBato and how does it work?',
+    answer: 'BataiBato is Nepal’s community driven ride sharing platform founded in Sindhuli. It bridges everyday commuters with vehicle drivers heading along the same route, making daily travel affordable, transparent, and prompt.',
+  },
+  {
+    question: 'Where is BataiBato currently operating?',
+    answer: 'BataiBato is fully operational across Sindhuli district, covering Kamalamai Municipality, Sindhulimadhi, Khaniyakharka, and surrounding routes along the BP Highway, with upcoming expansions to neighboring towns.',
+  },
+  {
+    question: 'Is the BataiBato mobile application free to install?',
+    answer: 'Yes, downloading and registering on the BataiBato app from the Google Play Store is completely free. Commuters only pay the transparent trip fare upon completing their journeys.',
+  },
+];
+
+const rideFaqs = [
+  {
+    question: 'What types of vehicles can I book on BataiBato?',
+    answer: 'You can choose between motorcycles, scooters, three wheeler auto rickshaws, and passenger cars depending on passenger count, luggage, and journey distance.',
+  },
+  {
+    question: 'How are fares calculated across trips?',
+    answer: 'Fares are determined transparently based on distance in kilometers, estimated travel duration, and vehicle type. The exact amount in Nepalese Rupees is displayed upfront before confirming your ride.',
+  },
+  {
+    question: 'Can I schedule a commute in advance?',
+    answer: 'Yes, our scheduled rides feature allows you to book trips up to 24 hours ahead, ensuring timely departure for early morning highway buses or clinical appointments.',
+  },
+];
+
+const safetyFaqs = [
+  {
+    question: 'How are drivers verified for community safety?',
+    answer: 'Every driver must submit government issued driver licenses, official vehicle blue books, and national identification. Credentials are thoroughly validated before any account is authorized.',
+  },
+  {
+    question: 'Can I share my live trip route with family members?',
+    answer: 'Yes, the mobile app provides live GPS tracking and shareable links that can be sent to family via SMS or WhatsApp with a single tap.',
+  },
+  {
+    question: 'Is passenger helmet provision mandatory for two wheelers?',
+    answer: 'Yes, passenger safety is non negotiable. All motorcycle and scooter driver partners are required to carry a clean, certified secondary helmet for the rider.',
+  },
+];
+
+const accountFaqs = [
+  {
+    question: 'What payment options are supported?',
+    answer: 'BataiBato accepts local digital payment wallets including eSewa, Khalti, direct mobile banking transfers, or physical cash handed directly to the driver upon destination arrival.',
+  },
+  {
+    question: 'How do I request account and data deletion?',
+    answer: 'You can initiate complete deletion directly inside app settings under "Delete Account", or email support@bataibato.com with your registered phone number. Your data will be permanently wiped within 48 hours.',
+  },
+];
+
+const allFaqs = [...generalFaqs, ...rideFaqs, ...safetyFaqs, ...accountFaqs];
+
+const faqSchemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: allFaqs.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<PageLayout
+  title="FAQ | Frequently Asked Questions | BataiBato"
+  description="Answers to common questions regarding BataiBato ride sharing in Nepal: app usage, fare pricing in NPR, safety verifications, digital wallets, and account privacy."
+  lang={lang}
+  schemaType="FAQPage"
+  schemaData={faqSchemaData}
+>
+  <section class="section faq-hero-section">
+    <div class="container text-center">
+      <h1 class="heading-xl">
+        Frequently Asked <span class="text-gradient">Questions</span>
+      </h1>
+      <p class="lead-text text-muted" style="max-width: 650px; margin: 1.5rem auto 0;">
+        Clear answers about using BataiBato, vehicle categories, safety regulations, and local fares.
+      </p>
+    </div>
+  </section>
+
+  <section class="section faq-list-section" style="padding-top: 0;">
+    <div class="container container-narrow">
+      <div class="faq-category-block" style="margin-bottom: 3.5rem;">
+        <h2 class="heading-md" style="margin-bottom: 1.5rem; color: var(--bb-red-400);">
+          1. General Information
+        </h2>
+        <FAQAccordion items={generalFaqs} />
+      </div>
+
+      <div class="faq-category-block" style="margin-bottom: 3.5rem;">
+        <h2 class="heading-md" style="margin-bottom: 1.5rem; color: var(--bb-red-400);">
+          2. Rides and Fleet Categories
+        </h2>
+        <FAQAccordion items={rideFaqs} />
+      </div>
+
+      <div class="faq-category-block" style="margin-bottom: 3.5rem;">
+        <h2 class="heading-md" style="margin-bottom: 1.5rem; color: var(--bb-red-400);">
+          3. Safety and Security
+        </h2>
+        <FAQAccordion items={safetyFaqs} />
+      </div>
+
+      <div class="faq-category-block">
+        <h2 class="heading-md" style="margin-bottom: 1.5rem; color: var(--bb-red-400);">
+          4. Payments and Account Control
+        </h2>
+        <FAQAccordion items={accountFaqs} />
+      </div>
+    </div>
+  </section>
+
+  <CallToAction lang={lang} />
+</PageLayout>
+
+<style>
+  .faq-hero-section {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+</style>

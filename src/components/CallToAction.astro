@@ -1,0 +1,172 @@
+---
+import { type Lang, useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="section cta-banner-section">
+  <div class="container">
+    <div class="cta-spotlight-box">
+      <div class="cta-inner-grid">
+        <div class="cta-text-content">
+          <span class="cta-mini-label">
+            {lang === 'ne' ? 'सिन्धुलीमा सुरु' : 'Now in Sindhuli'}
+          </span>
+          <h2 class="heading-lg" style="margin-top: 0.5rem; color: #ffffff;">
+            {t('cta.title')}
+          </h2>
+          <p class="lead-text" style="color: rgba(255, 255, 255, 0.92); margin-top: 0.75rem; max-width: 540px;">
+            {t('cta.lead')}
+          </p>
+
+          <div class="cta-action-row">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.bataibato.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="play-store-cta"
+              aria-label="Get BataiBato on Google Play"
+            >
+              <img src="/google-play-badge.svg" alt="Get it on Google Play" width="180" height="54" />
+            </a>
+            <div class="package-info-pill">
+              <span class="dot-online"></span>
+              <span>com.bataibato.app</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone / QR Code illustration -->
+        <div class="cta-visual-side">
+          <div class="app-qr-tile">
+            <div class="qr-mockup">
+              <svg viewBox="0 0 100 100" width="130" height="130" fill="#ffffff">
+                <rect width="100" height="100" fill="#ffffff" rx="6" />
+                <path d="M10 10h30v30H10zm6 6v18h18V16zm4 4h10v10H20zM60 10h30v30H60zm6 6v18h18V16zm4 4h10v10H70zM10 60h30v30H10zm6 6v18h18V66zm4 4h10v10H20zM50 20h6v6h-6zm0 14h6v6h-6zm10 20h6v6h-6zm14 0h16v6H74zm-24 10h6v10h-6zm10 6h10v6H60zm16 4h14v10H76zm-16 10h6v10h-6zm20 0h10v10H80z" fill="#0f172a"/>
+              </svg>
+            </div>
+            <span class="qr-caption">{lang === 'ne' ? 'क्यामेराले स्क्यान गरी डाउनलोड गर्नुहोस्' : 'Scan to install on Android'}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-banner-section {
+    padding-top: 1.5rem;
+  }
+
+  .cta-spotlight-box {
+    background: linear-gradient(135deg, #b91c1c 0%, #dc2626 50%, #ef4444 100%);
+    border-radius: var(--bb-radius-lg);
+    padding: clamp(2.25rem, 5vw, 4rem) clamp(1.75rem, 4vw, 3.5rem);
+    box-shadow: 0 12px 30px rgba(220, 38, 38, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-mini-label {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .cta-inner-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .cta-action-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .play-store-cta {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .play-store-cta:hover {
+    transform: scale(1.04);
+  }
+
+  .package-info-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.5rem 1rem;
+    border-radius: var(--bb-radius-full);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-family: monospace;
+  }
+
+  .dot-online {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 8px #4ade80;
+  }
+
+  .cta-visual-side {
+    display: flex;
+    justify-content: center;
+  }
+
+  .app-qr-tile {
+    background: #ffffff;
+    border-radius: var(--bb-radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .qr-mockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qr-caption {
+    font-size: 0.85rem;
+    color: var(--bb-text);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .cta-inner-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .cta-text-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cta-action-row {
+      justify-content: center;
+    }
+  }
+</style>

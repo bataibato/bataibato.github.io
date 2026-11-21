@@ -1,0 +1,149 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { useTranslations } from '../i18n/ui';
+
+const lang = 'ne';
+const t = useTranslations(lang);
+
+const values = [
+  {
+    icon: '/icons/ui/handshake.svg',
+    title: 'समुदाय प्रथम',
+    desc: 'हाम्रो मुख्य उद्देश्य सिन्धुलीका स्थानीय बासिन्दाहरूको दैनिक यात्रा सहज र सुलभ बनाउनु हो।',
+  },
+  {
+    icon: '/icons/ui/shield-check.svg',
+    title: 'सुरक्षा र विश्वास',
+    desc: 'प्रत्येक चालक र सवारीको कडा प्रमाणिकरण र डिजिटल ट्र्याकिङद्वारा सुरक्षित यात्राको सुनिश्चितता।',
+  },
+  {
+    icon: '/icons/ui/wallet.svg',
+    title: 'उचित अर्थतन्त्र',
+    desc: 'यात्रुका लागि सस्तो भाडा र स्थानीय सवारी धनीहरूका लागि पारदर्शी र न्यायोचित आम्दानी।',
+  },
+  {
+    icon: '/icons/ui/globe.svg',
+    title: 'दीर्घकालीन प्रभाव',
+    desc: 'सवारी साझेदारीले सडकमा अनावश्यक चाप कम गर्छ र इन्धन बचतसँगै वातावरण संरक्षणमा टेवा पुर्याउँछ।',
+  },
+];
+---
+
+<PageLayout
+  title="हाम्रो बारेमा | सिन्धुलीबाट सुरु भएको बाटैबाटो"
+  description="बाटैबाटोको जन्म सिन्धुलीमा भएको हो। यसको उद्देश्य नेपालका सहर तथा गाउँहरूमा यात्रा साझेदारी र सुलभ यातायातको नयाँ संस्कृति विकास गर्नु हो।"
+  lang={lang}
+>
+  <!-- Hero Section -->
+  <section class="section about-hero-section">
+    <div class="container text-center">
+      <h1 class="heading-xl">
+        सिन्धुलीको सडकबाट <span class="text-gradient">देशभरिको यात्रा</span>
+      </h1>
+      <p class="lead-text text-muted" style="max-width: 720px; margin: 1.5rem auto 0;">
+        "बाटैबाटो" को अर्थ आफ्नै गन्तव्यतर्फ जाँदा बाटोमा पर्ने सहयात्रीलाई साथ लिएर हिँड्नु हो। यात्रा साझेदारीको यसै पवित्र नेपाली भावनाबाट हाम्रो स्थापना भएको हो।
+      </p>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="section story-section" style="padding-top: 0;">
+    <div class="container">
+      <div class="story-grid surface-panel surface-glow">
+        <div class="story-text-column">
+          <h2 class="heading-lg">सिन्धुलीमा किन सुरु भयो बाटैबाटो?</h2>
+          <p class="story-paragraph">
+            काठमाडौँ वा पोखरा जस्ता ठूला सहरहरूमा राइड सेयरिङका धेरै विकल्प भए पनि सिन्धुली जस्ता तीव्र गतिमा विकास भइरहेका जिल्लाहरूमा भरपर्दो, सुरक्षित र प्रविधिमैत्री स्थानीय यातायातको अभाव थियो।
+          </p>
+          <p class="story-paragraph">
+            कमलामाई नगरपालिका, सिन्धुलीमाढी बजार र बीपी राजमार्ग आसपास दैनिक हजारौं नागरिकहरू कलेज, अस्पताल, व्यापार र सरकारी काममा आवतजावत गर्छन्। तर सार्वजनिक गाडीको समय अनिश्चित हुने र निजी सवारीमा एक्लै यात्रा गर्दा इन्धन खर्चिलो हुने समस्या थियो।
+          </p>
+          <p class="story-paragraph">
+            यसै समस्याको दिगो समाधानका रूपमा बाटैबाटो एप निर्माण गरिएको हो। आज एउटै दिशातर्फ गइरहेका स्थानीय चालक र यात्रुहरू एकापसमा जोडिएर भाडा साझेदारी गर्दै आरामदायी यात्रा गरिरहेका छन्।
+          </p>
+        </div>
+
+        <div class="story-visual-column">
+          <div class="mission-highlight-tile">
+            <div class="icon-box" style="margin-bottom: 1rem;">
+              <img src="/icons/ui/rocket.svg" alt="" width="34" height="34" />
+            </div>
+            <h3 class="heading-md" style="font-size: 1.35rem;">हाम्रो मिसन</h3>
+            <p class="text-muted" style="line-height: 1.7; margin-top: 0.75rem;">
+              नेपालका हरेक साना र मझौला सहरहरूमा प्रविधिमार्फत सुरक्षित, सस्तो र समुदायमुखी यात्रा प्रणाली स्थापित गर्नु।
+            </p>
+          </div>
+
+          <div class="mission-highlight-tile" style="margin-top: 1.5rem;">
+            <div class="icon-box" style="margin-bottom: 1rem;">
+              <img src="/icons/ui/globe.svg" alt="" width="34" height="34" />
+            </div>
+            <h3 class="heading-md" style="font-size: 1.35rem;">हाम्रो दृष्टिकोण</h3>
+            <p class="text-muted" style="line-height: 1.7; margin-top: 0.75rem;">
+              कुनै पनि नेपाली नागरिकले आवश्यक पर्दा सडकमा घण्टौं अलमलिनु नपरोस्, जहाँ जाँदा पनि एक क्लिकमै भरपर्दो सहयात्री मिलोस्।
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Grid -->
+  <section class="section values-section" style="background: var(--bb-dark-surface);">
+    <div class="container">
+      <div class="text-center section-header">
+        <h2 class="heading-lg">हामी कुन सिद्धान्तमा काम गर्छौं?</h2>
+      </div>
+
+      <div class="grid-4" style="margin-top: 3.5rem;">
+        {values.map((v) => (
+          <div class="surface-panel reveal-item" style="padding: 2rem 1.5rem;">
+            <div class="icon-box">
+              <img src={v.icon} alt="" width="30" height="30" />
+            </div>
+            <h3 class="heading-md" style="font-size: 1.2rem; margin-top: 0.5rem; margin-bottom: 0.5rem;">{v.title}</h3>
+            <p class="text-muted" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction lang={lang} />
+</PageLayout>
+
+<style>
+  .about-hero-section {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 3.5rem;
+    padding: clamp(2rem, 5vw, 4rem);
+  }
+
+  .story-paragraph {
+    line-height: 1.8;
+    color: var(--bb-gray-light);
+    font-size: 1.05rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .mission-highlight-tile {
+    background: var(--bb-dark-elevated);
+    border: 1px solid var(--bb-border);
+    border-radius: var(--bb-radius-md);
+    padding: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .story-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

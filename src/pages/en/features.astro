@@ -1,0 +1,178 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import FeatureBlock from '../../components/FeatureBlock.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const allFeatures = [
+  {
+    icon: '/icons/ui/bike.svg',
+    title: 'Instant Ride Matching',
+    description: 'Intelligent dispatch algorithm pairs you with verified nearby riders in seconds, cutting wait times across town.',
+  },
+  {
+    icon: '/icons/ui/wallet.svg',
+    title: 'Transparent Local Fares',
+    description: 'Upfront fare calculations with zero hidden fees. Know exactly what your commute costs before stepping onto the vehicle.',
+  },
+  {
+    icon: '/icons/ui/map-pin.svg',
+    title: 'Live Route Tracking',
+    description: 'Real time GPS tracking with live shareable links. Keep family and friends updated throughout your entire commute.',
+  },
+  {
+    icon: '/icons/ui/shield-check.svg',
+    title: 'Verified Drivers and Vehicles',
+    description: 'Mandatory verification of government issued driving licenses, vehicle blue books, and background checks.',
+  },
+  {
+    icon: '/icons/ui/star.svg',
+    title: 'Mutual Rating System',
+    description: 'Two way ratings and feedback keep our traveling community respectful, courteous, and safe for everyone.',
+  },
+  {
+    icon: '/icons/ui/message-square.svg',
+    title: 'Secure In App Communication',
+    description: 'Coordinate pickup points and instructions via encrypted in app chat and voice without exposing private phone numbers.',
+  },
+  {
+    icon: '/icons/ui/calendar.svg',
+    title: 'Scheduled Bookings',
+    description: 'Plan essential morning commutes, clinic appointments, or early highway buses ahead of time with scheduled rides.',
+  },
+  {
+    icon: '/icons/ui/globe.svg',
+    title: 'Sindhuli Roots, Nepal Wide Growth',
+    description: 'Starting in Kamalamai and Sindhulimadhi, expanding systematically to neighboring towns and highways across Nepal.',
+  },
+];
+---
+
+<PageLayout
+  title="Features | BataiBato Ride Sharing"
+  description="Explore BataiBato features: instant matching, transparent fare sharing, real time GPS tracking, verified local drivers, and multi modal fleet options."
+  lang={lang}
+>
+  <section class="section features-header-section">
+    <div class="container text-center">
+      <h1 class="heading-xl">
+        Technology Built for <span class="text-gradient">Everyday Mobility</span>
+      </h1>
+      <p class="lead-text text-muted" style="max-width: 680px; margin: 1.5rem auto 0;">
+        {t('features.lead')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Feature Grid -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="grid-3">
+        {allFeatures.map((f) => (
+          <FeatureBlock
+            icon={f.icon}
+            title={f.title}
+            description={f.description}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="section comparison-section" style="background: var(--bb-dark-surface);">
+    <div class="container">
+      <div class="text-center section-header">
+        <h2 class="heading-lg">BataiBato Versus Traditional Local Transport</h2>
+      </div>
+
+      <div class="comparison-table-wrapper surface-panel" style="margin-top: 2.5rem;">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Travel Parameter</th>
+              <th class="highlight-col">BataiBato</th>
+              <th>Traditional Street Hailing</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Average Wait Time</td>
+              <td class="highlight-col font-bold">1 to 3 minutes average</td>
+              <td>15 to 30 minutes standing on road</td>
+            </tr>
+            <tr>
+              <td>Fare Pricing</td>
+              <td class="highlight-col font-bold">Transparent upfront calculation</td>
+              <td>Subjective bargaining and unpredictable rates</td>
+            </tr>
+            <tr>
+              <td>Route Safety & Tracking</td>
+              <td class="highlight-col font-bold">Live GPS tracking and shareable links</td>
+              <td>Zero digital tracking or oversight</td>
+            </tr>
+            <tr>
+              <td>Driver Verification</td>
+              <td class="highlight-col font-bold">Mandatory license and blue book check</td>
+              <td>Unverified identity</td>
+            </tr>
+            <tr>
+              <td>Payment Flexibility</td>
+              <td class="highlight-col font-bold">eSewa, Khalti, Mobile Banking, or Cash</td>
+              <td>Exact cash only</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction lang={lang} />
+</PageLayout>
+
+<style>
+  .features-header-section {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .comparison-table-wrapper {
+    overflow-x: auto;
+    padding: 1.5rem;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 600px;
+  }
+
+  .comparison-table th, .comparison-table td {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--bb-border);
+  }
+
+  .comparison-table th {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--bb-light);
+  }
+
+  .comparison-table td {
+    color: var(--bb-gray-light);
+    font-size: 0.98rem;
+  }
+
+  .highlight-col {
+    background: rgba(239, 68, 68, 0.08);
+    color: var(--bb-light) !important;
+  }
+
+  .font-bold {
+    font-weight: 700;
+  }
+</style>

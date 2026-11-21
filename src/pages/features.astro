@@ -1,0 +1,178 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import FeatureBlock from '../components/FeatureBlock.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { useTranslations } from '../i18n/ui';
+
+const lang = 'ne';
+const t = useTranslations(lang);
+
+const allFeatures = [
+  {
+    icon: '/icons/ui/bike.svg',
+    title: 'तत्काल राइड म्याचिङ',
+    description: 'तपाईंको नजिकै रहेका चालकहरूसँग सेकेन्डमै सम्पर्क गराउने स्मार्ट प्रणाली। लामो समय पर्खनु पर्ने झन्झटबाट मुक्ति।',
+  },
+  {
+    icon: '/icons/ui/wallet.svg',
+    title: 'सस्तो र पारदर्शी भाडा',
+    description: 'कुनै लुकेको वा बढी शुल्क बिना पहिले नै निश्चित गरिएको उचित भाडा दर। यात्रा सुरु हुनुअघि नै रकम प्रस्ट देखिने।',
+  },
+  {
+    icon: '/icons/ui/map-pin.svg',
+    title: 'प्रत्यक्ष जीपीएस ट्र्याकिङ',
+    description: 'आफ्नो यात्राको प्रत्यक्ष मार्ग परिवार वा साथीहरूलाई सेयर गर्नुहोस्। तपाईं कहाँ पुग्नुभयो भन्ने जानकारी प्रत्यक्ष हेर्न सकिने।',
+  },
+  {
+    icon: '/icons/ui/shield-check.svg',
+    title: 'प्रमाणित चालक तथा सवारी',
+    description: 'सबै चालकहरूको आधिकारिक सरकारी ड्राइभिङ लाइसेन्स र ब्लुबुकको अनिवार्य प्रमाणीकरणपछि मात्र सेवा अनुमति।',
+  },
+  {
+    icon: '/icons/ui/star.svg',
+    title: 'पारस्परिक मूल्याङ्कन प्रणाली',
+    description: 'प्रत्येक यात्रापछि चालक र यात्रु दुवैले एकअर्कालाई रेटिङ र सुझाव दिन सक्ने प्रणाली, जसले समुदायको मर्यादा कायम राख्छ।',
+  },
+  {
+    icon: '/icons/ui/message-square.svg',
+    title: 'एपभित्रै च्याट र कल',
+    description: 'व्यक्तिगत फोन नम्बर नदेखाई एपभित्रै सुरक्षित म्यासेज वा इन्टरनेट कल गरी पिकअप स्थान सजिलै समन्वय गर्न सकिने।',
+  },
+  {
+    icon: '/icons/ui/calendar.svg',
+    title: 'अग्रिम यात्रा तालिका',
+    description: 'भोलिको बिहानी बस छुट्ने डर वा अस्पतालको निश्चित समयका लागि आजै आफ्नो सवारी अग्रिम समयमा सुरक्षित गर्नुहोस्।',
+  },
+  {
+    icon: '/icons/ui/globe.svg',
+    title: 'सिन्धुलीबाट नेपालभरि विस्तार',
+    description: 'कमलामाई नगरपालिका र सिन्धुलीका प्रमुख सडकहरूबाट सुरु भई क्रमशः अन्य सहरहरूमा सेवा विस्तार हुँदै।',
+  },
+];
+---
+
+<PageLayout
+  title="विशेषताहरू | बाटैबाटो राइड सेयरिङ"
+  description="बाटैबाटोका आधुनिक विशेषताहरू: तत्काल म्याचिङ, पारदर्शी भाडा, जीपीएस प्रत्यक्ष ट्र्याकिङ, प्रमाणित चालकहरू र सुरक्षित डिजिटल भुक्तानी।"
+  lang={lang}
+>
+  <section class="section features-header-section">
+    <div class="container text-center">
+      <h1 class="heading-xl">
+        नेपालको यात्रालाई <span class="text-gradient">आधुनिक र सहज</span> बनाउने प्रविधि
+      </h1>
+      <p class="lead-text text-muted" style="max-width: 680px; margin: 1.5rem auto 0;">
+        {t('features.lead')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Feature Grid -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="grid-3">
+        {allFeatures.map((f) => (
+          <FeatureBlock
+            icon={f.icon}
+            title={f.title}
+            description={f.description}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="section comparison-section" style="background: var(--bb-dark-surface);">
+    <div class="container">
+      <div class="text-center section-header">
+        <h2 class="heading-lg">बाटैबाटो र परम्परागत यात्रा बीचको फरक</h2>
+      </div>
+
+      <div class="comparison-table-wrapper surface-panel" style="margin-top: 2.5rem;">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>सुविधा वा सेवा</th>
+              <th class="highlight-col">बाटैबाटो (BataiBato)</th>
+              <th>परम्परागत स्थानीय गाडी</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>सवारी खोज्ने समय</td>
+              <td class="highlight-col font-bold">१ देखि ३ मिनेटमै म्याचिङ</td>
+              <td>सडकमा लामो समय पर्खनुपर्ने</td>
+            </tr>
+            <tr>
+              <td>भाडा निर्धारण</td>
+              <td class="highlight-col font-bold">पहिले नै निश्चित र पारदर्शी</td>
+              <td>मोलमोलाई गर्नुपर्ने, अनिश्चित भाडा</td>
+            </tr>
+            <tr>
+              <td>सुरक्षा र ट्र्याकिङ</td>
+              <td class="highlight-col font-bold">प्रत्यक्ष जीपीएस ट्र्याकिङ उपलब्ध</td>
+              <td>कुनै डिजिटल ट्र्याकिङ नहुने</td>
+            </tr>
+            <tr>
+              <td>चालक प्रमाणीकरण</td>
+              <td class="highlight-col font-bold">सरकारी लाइसेन्स र ब्लुबुक प्रमाणित</td>
+              <td>कुनै औपचारिक पहिचान नहुने</td>
+            </tr>
+            <tr>
+              <td>भुक्तानी विकल्प</td>
+              <td class="highlight-col font-bold">ईसेवा, खल्ती, डिजिटल वा नगद</td>
+              <td>केवल खुद्रा नगद मात्र</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction lang={lang} />
+</PageLayout>
+
+<style>
+  .features-header-section {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .comparison-table-wrapper {
+    overflow-x: auto;
+    padding: 1.5rem;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 600px;
+  }
+
+  .comparison-table th, .comparison-table td {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--bb-border);
+  }
+
+  .comparison-table th {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--bb-light);
+  }
+
+  .comparison-table td {
+    color: var(--bb-gray-light);
+    font-size: 0.98rem;
+  }
+
+  .highlight-col {
+    background: rgba(239, 68, 68, 0.08);
+    color: var(--bb-light) !important;
+  }
+
+  .font-bold {
+    font-weight: 700;
+  }
+</style>

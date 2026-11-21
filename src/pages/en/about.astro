@@ -1,0 +1,149 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const values = [
+  {
+    icon: '/icons/ui/handshake.svg',
+    title: 'Community First',
+    desc: 'Our core focus is improving daily transit and local connection for Sindhuli residents.',
+  },
+  {
+    icon: '/icons/ui/shield-check.svg',
+    title: 'Safety and Trust',
+    desc: 'Rigorous credential verification and live GPS monitoring ensure peace of mind on every journey.',
+  },
+  {
+    icon: '/icons/ui/wallet.svg',
+    title: 'Fair Economics',
+    desc: 'Accessible upfront fares for commuters, paired with sustainable, honest earnings for local drivers.',
+  },
+  {
+    icon: '/icons/ui/globe.svg',
+    title: 'Sustainable Impact',
+    desc: 'Empty seat sharing reduces road congestion, saves fuel, and promotes cleaner local transit.',
+  },
+];
+---
+
+<PageLayout
+  title="About Us | The BataiBato Story from Sindhuli"
+  description="Discover the origin of BataiBato in Sindhuli, Nepal. Building community ride sharing, connecting everyday travelers, and making local transportation reliable."
+  lang={lang}
+>
+  <!-- Hero Section -->
+  <section class="section about-hero-section">
+    <div class="container text-center">
+      <h1 class="heading-xl">
+        From the Roads of Sindhuli to <span class="text-gradient">Communities Nationwide</span>
+      </h1>
+      <p class="lead-text text-muted" style="max-width: 720px; margin: 1.5rem auto 0;">
+        In Nepali, "BataiBato" means travelling along the shared way, picking up fellow travelers heading in your direction. That spirit of cooperation defines our journey.
+      </p>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="section story-section" style="padding-top: 0;">
+    <div class="container">
+      <div class="story-grid surface-panel surface-glow">
+        <div class="story-text-column">
+          <h2 class="heading-lg">Why Sindhuli Needed BataiBato</h2>
+          <p class="story-paragraph">
+            While major metropolitan hubs like Kathmandu had access to modern ride hailing options, rapidly expanding regional districts like Sindhuli remained underserved by dependable transport technology.
+          </p>
+          <p class="story-paragraph">
+            Across Kamalamai Municipality, Sindhulimadhi market, and the scenic BP Highway corridor, thousands of commuters commute daily to colleges, hospitals, government offices, and local businesses. However, public vehicle frequencies were erratic, and driving solo was increasingly expensive.
+          </p>
+          <p class="story-paragraph">
+            BataiBato was founded to bridge this gap. By pairing local vehicle owners with neighbors heading the same way, we provide faster, affordable transit while helping drivers offset fuel expenses.
+          </p>
+        </div>
+
+        <div class="story-visual-column">
+          <div class="mission-highlight-tile">
+            <div class="icon-box" style="margin-bottom: 1rem;">
+              <img src="/icons/ui/rocket.svg" alt="" width="34" height="34" />
+            </div>
+            <h3 class="heading-md" style="font-size: 1.35rem;">Our Mission</h3>
+            <p class="text-muted" style="line-height: 1.7; margin-top: 0.75rem;">
+              To make daily mobility across Nepal’s regional towns transparent, affordable, and safe through community centered technology.
+            </p>
+          </div>
+
+          <div class="mission-highlight-tile" style="margin-top: 1.5rem;">
+            <div class="icon-box" style="margin-bottom: 1rem;">
+              <img src="/icons/ui/globe.svg" alt="" width="34" height="34" />
+            </div>
+            <h3 class="heading-md" style="font-size: 1.35rem;">Our Vision</h3>
+            <p class="text-muted" style="line-height: 1.7; margin-top: 0.75rem;">
+              To ensure that no citizen in Nepal is stranded waiting for hours on a road, connecting every journey through mutual trust and technology.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Grid -->
+  <section class="section values-section" style="background: var(--bb-dark-surface);">
+    <div class="container">
+      <div class="text-center section-header">
+        <h2 class="heading-lg">The Values That Drive Us</h2>
+      </div>
+
+      <div class="grid-4" style="margin-top: 3.5rem;">
+        {values.map((v) => (
+          <div class="surface-panel reveal-item" style="padding: 2rem 1.5rem;">
+            <div class="icon-box">
+              <img src={v.icon} alt="" width="30" height="30" />
+            </div>
+            <h3 class="heading-md" style="font-size: 1.2rem; margin-top: 0.5rem; margin-bottom: 0.5rem;">{v.title}</h3>
+            <p class="text-muted" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction lang={lang} />
+</PageLayout>
+
+<style>
+  .about-hero-section {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 3.5rem;
+    padding: clamp(2rem, 5vw, 4rem);
+  }
+
+  .story-paragraph {
+    line-height: 1.8;
+    color: var(--bb-gray-light);
+    font-size: 1.05rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .mission-highlight-tile {
+    background: var(--bb-dark-elevated);
+    border: 1px solid var(--bb-border);
+    border-radius: var(--bb-radius-md);
+    padding: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .story-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

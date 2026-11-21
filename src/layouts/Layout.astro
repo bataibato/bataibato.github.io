@@ -1,0 +1,173 @@
+---
+import '../styles/global.css';
+import '../styles/utilities.css';
+import { type Lang, defaultLang } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: Lang;
+  canonicalPath?: string;
+  schemaType?: 'Organization' | 'TransportationService' | 'FAQPage';
+  schemaData?: Record<string, any>;
+}
+
+const {
+  title,
+  description,
+  lang = defaultLang,
+  canonicalPath = '',
+  schemaType = 'Organization',
+  schemaData,
+} = Astro.props;
+
+const siteUrl = 'https://bataibato.github.io';
+const currentPath = canonicalPath || Astro.url.pathname;
+const canonicalUrl = `${siteUrl}${currentPath.endsWith('/') ? currentPath : currentPath + '/'}`;
+
+const nePath = currentPath.replace(/^\/en/, '') || '/';
+const enPath = nePath === '/' ? '/en/' : `/en${nePath.endsWith('/') ? nePath : nePath + '/'}`;
+
+// High-confidence Knowledge Graph Schema for SEO, AEO and GEO
+const baseOrgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://bataibato.github.io/#organization',
+  name: 'BataiBato',
+  alternateName: ['बाटैबाटो', 'BataiBato Nepal', 'Batai Bato'],
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  description: 'Nepal’s community driven ride sharing platform starting from Sindhuli district.',
+  foundingLocation: {
+    '@type': 'Place',
+    name: 'Sindhuli, Nepal',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Kamalamai',
+    addressRegion: 'Sindhuli, Bagmati Province',
+    addressCountry: 'NP',
+  },
+  areaServed: [
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Sindhuli District, Nepal',
+    },
+    {
+      '@type': 'Country',
+      name: 'Nepal',
+    },
+  ],
+  knowsAbout: [
+    'Ride sharing in Nepal',
+    'Motorcycle taxi in Sindhuli',
+    'Community fare sharing',
+    'Local transportation in Sindhuli',
+  ],
+  sameAs: [
+    'https://play.google.com/store/apps/details?id=com.bataibato.app',
+  ],
+};
+
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'BataiBato',
+  operatingSystem: 'Android',
+  applicationCategory: 'TravelApplication',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'NPR',
+  },
+  installUrl: 'https://play.google.com/store/apps/details?id=com.bataibato.app',
+  publisher: {
+    '@id': 'https://bataibato.github.io/#organization',
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: lang === 'ne' ? 'गृहपृष्ठ' : 'Home',
+      item: lang === 'ne' ? `${siteUrl}/` : `${siteUrl}/en/`,
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | BataiBato बाटैबाटो</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="BataiBato, बाटैबाटो, ride sharing Sindhuli, bike ride Nepal, transportation Sindhuli, scooter ride, auto rickshaw Nepal, ride hailing Nepal" />
+    <meta name="author" content="BataiBato" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Alternate hreflang for bilingual indexing -->
+    <link rel="alternate" hreflang="ne" href={`${siteUrl}${nePath.endsWith('/') ? nePath : nePath + '/'}`} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}${enPath}`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${nePath.endsWith('/') ? nePath : nePath + '/'}`} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={`${title} | BataiBato बाटैबाटो`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}/og-image.svg`} />
+    <meta property="og:locale" content={lang === 'ne' ? 'ne_NP' : 'en_US'} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | BataiBato बाटैबाटो`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}/og-image.svg`} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#dc2626" />
+
+    <!-- Google Fonts for English and Nepali -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD Structured Data for AEO and GEO -->
+    <script type="application/ld+json" set:html={JSON.stringify(baseOrgSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(appSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    {schemaData && (
+      <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+    )}
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">सामग्रीमा जानुहोस् (Skip to content)</a>
+    <slot />
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    background: var(--bb-red-600);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    z-index: 1000;
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 10px;
+  }
+</style>

@@ -1,0 +1,308 @@
+---
+import { type Lang, useTranslations, getLocalizedPath } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const currentPath = Astro.url.pathname;
+
+const targetLang: Lang = lang === 'ne' ? 'en' : 'ne';
+const langToggleUrl = getLocalizedPath(currentPath, targetLang);
+---
+
+<header class="site-header glass-nav">
+  <div class="container nav-wrapper">
+    <!-- Brand Logo -->
+    <a href={getLocalizedPath('/', lang)} class="brand-logo" aria-label="BataiBato Home">
+      <div class="logo-mark">
+        <svg viewBox="0 0 32 32" fill="none" class="logo-icon">
+          <circle cx="10" cy="22" r="4" stroke="#dc2626" stroke-width="2.5" />
+          <circle cx="22" cy="22" r="4" stroke="#dc2626" stroke-width="2.5" />
+          <path d="M10 22L14 14H19L22 22" stroke="#0f172a" stroke-width="2" stroke-linecap="round" />
+          <path d="M14 14L17 19H22" stroke="#dc2626" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
+      <span class="brand-name">Batai<span class="brand-highlight">Bato</span></span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" aria-label="Main Navigation">
+      <a href={getLocalizedPath('/', lang)} class:list={['nav-link', { active: currentPath === '/' || currentPath === '/en' || currentPath === '/en/' }]}>
+        {t('nav.home')}
+      </a>
+      <a href={getLocalizedPath('/features', lang)} class:list={['nav-link', { active: currentPath.includes('/features') }]}>
+        {t('nav.features')}
+      </a>
+      <a href={getLocalizedPath('/how-it-works', lang)} class:list={['nav-link', { active: currentPath.includes('/how-it-works') }]}>
+        {t('nav.howItWorks')}
+      </a>
+      <a href={getLocalizedPath('/about', lang)} class:list={['nav-link', { active: currentPath.includes('/about') }]}>
+        {t('nav.about')}
+      </a>
+      <a href={getLocalizedPath('/faq', lang)} class:list={['nav-link', { active: currentPath.includes('/faq') }]}>
+        {t('nav.faq')}
+      </a>
+      <a href={getLocalizedPath('/contact', lang)} class:list={['nav-link', { active: currentPath.includes('/contact') }]}>
+        {t('nav.contact')}
+      </a>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <!-- Language Switcher -->
+      <a href={langToggleUrl} class="lang-toggle-btn" aria-label="Switch Language">
+        <img src="/icons/ui/languages.svg" alt="" width="16" height="16" class="lang-icon" />
+        <span>{lang === 'ne' ? 'EN' : 'नेपाली'}</span>
+      </a>
+
+      <!-- CTA Button -->
+      <a href={getLocalizedPath('/download', lang)} class="btn btn-primary nav-cta">
+        <img src="/icons/ui/download.svg" alt="" width="16" height="16" class="btn-icon" />
+        <span>{t('nav.getApp')}</span>
+      </a>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open mobile navigation" aria-expanded="false">
+        <img src="/icons/ui/menu.svg" alt="" width="24" height="24" id="menu-icon-open" />
+        <img src="/icons/ui/x.svg" alt="" width="24" height="24" id="menu-icon-close" class="hidden" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <nav class="mobile-nav">
+      <a href={getLocalizedPath('/', lang)} class="mobile-nav-link">{t('nav.home')}</a>
+      <a href={getLocalizedPath('/features', lang)} class="mobile-nav-link">{t('nav.features')}</a>
+      <a href={getLocalizedPath('/how-it-works', lang)} class="mobile-nav-link">{t('nav.howItWorks')}</a>
+      <a href={getLocalizedPath('/about', lang)} class="mobile-nav-link">{t('nav.about')}</a>
+      <a href={getLocalizedPath('/faq', lang)} class="mobile-nav-link">{t('nav.faq')}</a>
+      <a href={getLocalizedPath('/contact', lang)} class="mobile-nav-link">{t('nav.contact')}</a>
+      <a href={getLocalizedPath('/download', lang)} class="mobile-nav-link highlight">{t('nav.download')}</a>
+      <div class="mobile-lang-row">
+        <a href={langToggleUrl} class="lang-toggle-btn full-width">
+          <img src="/icons/ui/languages.svg" alt="" width="16" height="16" />
+          <span>{lang === 'ne' ? 'Switch to English' : 'नेपालीमा हेर्नुहोस्'}</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    transition: all 0.25s ease;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 38px;
+    height: 38px;
+    background: #ffffff;
+    border: 1.5px solid #fecaca;
+    border-radius: var(--bb-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .logo-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .brand-name {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--bb-text);
+    letter-spacing: -0.02em;
+  }
+
+  .brand-highlight {
+    color: var(--bb-red-600);
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  .nav-link {
+    color: #475569;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    position: relative;
+    padding-block: 0.25rem;
+  }
+
+  .nav-link:hover, .nav-link.active {
+    color: var(--bb-text);
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--bb-red-600);
+    border-radius: 2px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .lang-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #ffffff;
+    border: 1px solid var(--bb-border);
+    padding: 0.45rem 0.85rem;
+    border-radius: var(--bb-radius-full);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--bb-text);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .lang-toggle-btn:hover {
+    border-color: var(--bb-red-600);
+    background: var(--bb-red-50);
+  }
+
+  .lang-icon {
+    opacity: 0.75;
+  }
+
+  .nav-cta {
+    padding: 0.55rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-icon {
+    filter: brightness(0) invert(1);
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .mobile-drawer {
+    display: none;
+    position: absolute;
+    top: 74px;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-bottom: 1px solid var(--bb-border);
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--bb-text);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .mobile-nav-link.highlight {
+    color: var(--bb-red-600);
+  }
+
+  .mobile-lang-row {
+    margin-top: 0.5rem;
+  }
+
+  .full-width {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 992px) {
+    .desktop-nav {
+      display: none;
+    }
+    .nav-cta {
+      display: none;
+    }
+    .mobile-menu-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-drawer.open {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const drawer = document.getElementById('mobile-drawer');
+  const openIcon = document.getElementById('menu-icon-open');
+  const closeIcon = document.getElementById('menu-icon-close');
+
+  if (toggleBtn && drawer && openIcon && closeIcon) {
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
+      if (isOpen) {
+        openIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    });
+  }
+</script>

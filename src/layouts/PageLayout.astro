@@ -1,0 +1,114 @@
+---
+import Layout from './Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { type Lang, defaultLang } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: Lang;
+  canonicalPath?: string;
+  schemaType?: 'Organization' | 'TransportationService' | 'FAQPage';
+  schemaData?: Record<string, any>;
+}
+
+const {
+  title,
+  description,
+  lang = defaultLang,
+  canonicalPath,
+  schemaType,
+  schemaData,
+} = Astro.props;
+---
+
+<Layout
+  title={title}
+  description={description}
+  lang={lang}
+  canonicalPath={canonicalPath}
+  schemaType={schemaType}
+  schemaData={schemaData}
+>
+  <Navbar lang={lang} />
+  <main id="main-content">
+    <slot />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { animate, spring } from 'motion';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initInteractions() {
+    // 1. Scroll-triggered reveals for items with .reveal-item
+    const revealItems = document.querySelectorAll('.reveal-item');
+    revealItems.forEach((el) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+
+    // 2. Animated counters
+    const counterElements = document.querySelectorAll<HTMLElement>('.stat-number[data-target]');
+    counterElements.forEach((el) => {
+      const targetVal = parseFloat(el.dataset.target || '0');
+      const originalText = el.textContent || '';
+      const hasPlus = originalText.includes('+');
+
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 90%',
+        once: true,
+        onEnter: () => {
+          gsap.to(
+            { val: 0 },
+            {
+              val: targetVal,
+              duration: 1.8,
+              ease: 'power2.out',
+              onUpdate: function () {
+                const current = Math.floor(this.targets()[0].val);
+                el.textContent = current.toLocaleString('ne-NP') + (hasPlus ? '+' : '');
+              },
+            }
+          );
+        },
+      });
+    });
+
+    // 3. Motion micro-interactions on button hover
+    const actionButtons = document.querySelectorAll<HTMLElement>('.btn');
+    actionButtons.forEach((btn) => {
+      btn.addEventListener('mouseenter', () => {
+        animate(btn, { scale: 1.03 }, { easing: spring({ stiffness: 350, damping: 22 }) });
+      });
+      btn.addEventListener('mouseleave', () => {
+        animate(btn, { scale: 1.0 }, { easing: spring({ stiffness: 350, damping: 22 }) });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initInteractions);
+  } else {
+    initInteractions();
+  }
+</script>

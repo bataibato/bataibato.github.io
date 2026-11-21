@@ -1,0 +1,101 @@
+---
+import PageLayout from './PageLayout.astro';
+import { type Lang, defaultLang } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  lastUpdated: string;
+  lang?: Lang;
+  canonicalPath?: string;
+}
+
+const {
+  title,
+  description,
+  lastUpdated,
+  lang = defaultLang,
+  canonicalPath,
+} = Astro.props;
+---
+
+<PageLayout title={title} description={description} lang={lang} canonicalPath={canonicalPath}>
+  <section class="section legal-hero-section">
+    <div class="container container-narrow text-center">
+      <h1 class="heading-lg">{title}</h1>
+      <p class="text-muted" style="margin-top: 0.75rem; font-size: 0.95rem;">
+        {lang === 'ne' ? 'पछिल्लो पटक अध्यावधिक गरिएको मिति:' : 'Last updated:'} {lastUpdated}
+      </p>
+    </div>
+  </section>
+
+  <section class="legal-body-section">
+    <div class="container container-narrow">
+      <div class="legal-paper-surface surface-panel">
+        <div class="legal-prose">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .legal-hero-section {
+    padding-top: 8rem;
+    padding-bottom: 2.5rem;
+    background: radial-gradient(circle at 50% 0%, rgba(239, 68, 68, 0.12) 0%, transparent 65%);
+  }
+
+  .legal-body-section {
+    padding-bottom: 6rem;
+  }
+
+  .legal-paper-surface {
+    padding: clamp(2rem, 5vw, 4rem);
+    background: var(--bb-dark-surface);
+  }
+
+  .legal-prose :global(h2) {
+    font-size: 1.6rem;
+    color: var(--bb-light);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--bb-border);
+    padding-bottom: 0.5rem;
+  }
+
+  .legal-prose :global(h3) {
+    font-size: 1.25rem;
+    color: var(--bb-light);
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-prose :global(p) {
+    line-height: 1.8;
+    color: var(--bb-gray-light);
+    margin-bottom: 1.25rem;
+    font-size: 1.02rem;
+  }
+
+  .legal-prose :global(ul) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    color: var(--bb-gray-light);
+    line-height: 1.8;
+  }
+
+  .legal-prose :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-prose :global(strong) {
+    color: var(--bb-light);
+  }
+
+  .legal-prose :global(a) {
+    color: var(--bb-red-400);
+    text-decoration: underline;
+  }
+</style>

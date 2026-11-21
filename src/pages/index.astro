@@ -1,0 +1,328 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import BikeScene from '../components/BikeScene.astro';
+import StatsCounter from '../components/StatsCounter.astro';
+import VehicleShowcase from '../components/VehicleShowcase.astro';
+import FeatureBlock from '../components/FeatureBlock.astro';
+import StepItem from '../components/StepItem.astro';
+import TestimonialQuote from '../components/TestimonialQuote.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { useTranslations, getLocalizedPath } from '../i18n/ui';
+
+const lang = 'ne';
+const t = useTranslations(lang);
+
+const transportServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TransportationService',
+  name: 'BataiBato बाटैबाटो',
+  serviceType: 'Ride Sharing and Community Transit',
+  provider: {
+    '@id': 'https://bataibato.github.io/#organization',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Sindhuli',
+    containedInPlace: {
+      '@type': 'Country',
+      name: 'Nepal',
+    },
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 27.2564,
+    longitude: 85.9696,
+  },
+  priceRange: 'NPR 40 to NPR 500',
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'NPR',
+    lowPrice: '40',
+    highPrice: '500',
+  },
+};
+---
+
+<PageLayout
+  title="बाटैबाटो | सिन्धुलीको आफ्नै राइड सेयरिङ एप"
+  description="बाटैबाटो नेपालको समुदायमा आधारित राइड सेयरिङ एप हो। सिन्धुलीबाट सुरु भई दैनिक यात्रा, उचित भाडा साझेदारी, मोटरसाइकल, स्कुटर, अटो रिक्सा र कारको भरपर्दो विकल्प।"
+  lang={lang}
+  schemaType="TransportationService"
+  schemaData={transportServiceSchema}
+>
+  <!-- Hero Section -->
+  <section class="section section-hero hero-layout">
+    <div class="container">
+      <div class="hero-split-grid">
+        <!-- Hero Text -->
+        <div class="hero-text-block">
+          <h1 class="heading-xl hero-main-title">
+            {t('hero.titleStart')} <br />
+            <span class="text-gradient">{t('hero.titleEnd')}</span>
+          </h1>
+
+          <p class="lead-text hero-lead">
+            {t('hero.lead')}
+          </p>
+
+          <div class="hero-button-cluster">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.bataibato.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="play-badge-button"
+              aria-label="Download BataiBato on Google Play"
+            >
+              <img src="/google-play-badge.svg" alt="Get it on Google Play" width="180" height="54" />
+            </a>
+
+            <a href={getLocalizedPath('/features', lang)} class="btn btn-secondary">
+              <img src="/icons/ui/sparkles.svg" alt="" width="18" height="18" />
+              <span>{t('hero.ctaExplore')}</span>
+            </a>
+          </div>
+
+          <div class="hero-trust-row">
+            <div class="trust-pill">
+              <img src="/icons/ui/shield-check.svg" alt="" width="20" height="20" />
+              <span>१००% प्रमाणित चालकहरू</span>
+            </div>
+            <div class="trust-pill">
+              <img src="/icons/ui/map-pin.svg" alt="" width="20" height="20" />
+              <span>सिन्धुली माढी र आसपास क्षेत्र</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero 3D Bike Scene -->
+        <div class="hero-visual-block">
+          <BikeScene />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Counter Ribbon -->
+  <StatsCounter lang={lang} />
+
+  <!-- Vehicle Fleet Showcase (3D switcher) -->
+  <VehicleShowcase lang={lang} />
+
+  <!-- Platform Features Preview -->
+  <section class="section features-preview-section">
+    <div class="container">
+      <div class="text-center section-header">
+        <h2 class="heading-lg">{t('features.title')}</h2>
+        <p class="lead-text text-muted" style="max-width: 650px; margin: 1rem auto 0;">
+          {t('features.lead')}
+        </p>
+      </div>
+
+      <div class="grid-3" style="margin-top: 3rem;">
+        <FeatureBlock
+          icon="/icons/ui/bike.svg"
+          title={t('features.f1Title')}
+          description={t('features.f1Desc')}
+        />
+        <FeatureBlock
+          icon="/icons/ui/wallet.svg"
+          title={t('features.f2Title')}
+          description={t('features.f2Desc')}
+        />
+        <FeatureBlock
+          icon="/icons/ui/map-pin.svg"
+          title={t('features.f3Title')}
+          description={t('features.f3Desc')}
+        />
+        <FeatureBlock
+          icon="/icons/ui/shield-check.svg"
+          title={t('features.f4Title')}
+          description={t('features.f4Desc')}
+        />
+        <FeatureBlock
+          icon="/icons/ui/handshake.svg"
+          title={t('features.f5Title')}
+          description={t('features.f5Desc')}
+        />
+        <FeatureBlock
+          icon="/icons/ui/calendar.svg"
+          title={t('features.f6Title')}
+          description={t('features.f6Desc')}
+        />
+      </div>
+
+      <div class="text-center" style="margin-top: 3rem;">
+        <a href={getLocalizedPath('/features', lang)} class="btn btn-outline">
+          <span>सबै विशेषताहरू हेर्नुहोस्</span>
+          <img src="/icons/ui/arrow-right.svg" alt="" width="18" height="18" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Summary -->
+  <section class="section how-preview-section" style="background: var(--bb-dark-surface);">
+    <div class="container">
+      <div class="text-center section-header">
+        <h2 class="heading-lg">{t('how.title')}</h2>
+        <p class="lead-text text-muted" style="max-width: 650px; margin: 1rem auto 0;">
+          {t('how.lead')}
+        </p>
+      </div>
+
+      <div class="grid-4" style="margin-top: 3.5rem;">
+        <StepItem
+          number="०१"
+          title={t('how.step1')}
+          description={t('how.step1Desc')}
+          icon="/icons/ui/smartphone.svg"
+        />
+        <StepItem
+          number="०२"
+          title={t('how.step2')}
+          description={t('how.step2Desc')}
+          icon="/icons/ui/map-pin.svg"
+        />
+        <StepItem
+          number="०३"
+          title={t('how.step3')}
+          description={t('how.step3Desc')}
+          icon="/icons/ui/bike.svg"
+        />
+        <StepItem
+          number="०४"
+          title={t('how.step4')}
+          description={t('how.step4Desc')}
+          icon="/icons/ui/check.svg"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="text-center section-header">
+        <h2 class="heading-lg">{t('test.title')}</h2>
+        <p class="lead-text text-muted" style="max-width: 650px; margin: 1rem auto 0;">
+          {t('test.lead')}
+        </p>
+      </div>
+
+      <div class="grid-3" style="margin-top: 3rem;">
+        <TestimonialQuote
+          quote="सिन्धुलीमाढीबाट कमलामाई क्याम्पस पुग्न पहिले धेरै गाह्रो हुन्थ्यो। बाटैबाटो आएपछि समय र खर्च दुवै आधा बचत भएको छ।"
+          author="सुजन श्रेष्ठ"
+          role="विद्यार्थी"
+          location="सिन्धुलीमाढी"
+          rating={5}
+        />
+        <TestimonialQuote
+          quote="म आफ्नो मोटरसाइकलमा अफिस जाँदा सहयात्री लिन पाउँछु। पेट्रोल खर्च उठ्छ र नयाँ साथीहरूसँग चिनजान पनि हुन्छ।"
+          author="दिनेश कार्की"
+          role="राइडर चालक"
+          location="कमलामाई"
+          rating={5}
+        />
+        <TestimonialQuote
+          quote="सुरक्षित र भरपर्दो। सिन्धुली अस्पतालबाट बजार जान अटो रिक्सा तत्काल पाइन्छ, परिवारसँगको यात्रामा धेरै सुविधा भएको छ।"
+          author="अनिता लामा"
+          role="दैनिक यात्रु"
+          location="सिन्धुली"
+          rating={5}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Call To Action -->
+  <CallToAction lang={lang} />
+</PageLayout>
+
+<style>
+  .hero-layout {
+    background: radial-gradient(circle at 15% 15%, rgba(220, 38, 38, 0.18) 0%, transparent 60%);
+  }
+
+  .hero-split-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .hero-main-title {
+    margin-top: 1.25rem;
+  }
+
+  .hero-lead {
+    margin-top: 1.5rem;
+    max-width: 540px;
+  }
+
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--bb-red-500);
+    box-shadow: 0 0 10px var(--bb-red-500);
+    animation: blink 2s infinite ease-in-out;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  .hero-button-cluster {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .play-badge-button {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .play-badge-button:hover {
+    transform: scale(1.04);
+  }
+
+  .hero-trust-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2.25rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .trust-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--bb-gray-muted);
+  }
+
+  @media (max-width: 992px) {
+    .hero-split-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 2.5rem;
+    }
+    .hero-lead {
+      margin-inline: auto;
+    }
+    .hero-button-cluster {
+      justify-content: center;
+    }
+    .hero-trust-row {
+      justify-content: center;
+    }
+  }
+</style>

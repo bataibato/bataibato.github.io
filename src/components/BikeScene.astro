@@ -1,0 +1,234 @@
+---
+interface Props {
+  modelPath?: string;
+}
+
+const { modelPath = '/models/motorcycle.glb' } = Astro.props;
+---
+
+<div class="bike-canvas-container" id="bike-3d-root" data-model={modelPath}>
+  <div class="canvas-loading" id="bike-loading-indicator">
+    <div class="spinner"></div>
+    <span class="loading-label">3D सवारी लोड हुँदैछ...</span>
+  </div>
+  <canvas id="bike-webgl-canvas"></canvas>
+  <div class="interaction-hint">
+    <img src="/icons/ui/compass.svg" alt="" width="14" height="14" class="hint-icon" />
+    <span>सवारी घुमाउन माउस चलाउनुहोस् (Drag to rotate)</span>
+  </div>
+</div>
+
+<style>
+  .bike-canvas-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--bb-radius-lg);
+    background: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%);
+    overflow: hidden;
+    border: 1px solid var(--bb-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  #bike-webgl-canvas {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    cursor: grab;
+  }
+
+  #bike-webgl-canvas:active {
+    cursor: grabbing;
+  }
+
+  .canvas-loading {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--bb-text-muted);
+    font-size: 0.9rem;
+    transition: opacity 0.4s ease;
+  }
+
+  .canvas-loading.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #fee2e2;
+    border-top-color: var(--bb-red-600);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .interaction-hint {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--bb-border);
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--bb-radius-full);
+    font-size: 0.78rem;
+    color: var(--bb-text-muted);
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .hint-icon {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .bike-canvas-container {
+      height: 360px;
+    }
+  }
+</style>
+
+<script>
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+  import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
+  function initBikeScene() {
+    const root = document.getElementById('bike-3d-root');
+    const canvas = document.getElementById('bike-webgl-canvas') as HTMLCanvasElement | null;
+    const loaderElem = document.getElementById('bike-loading-indicator');
+
+    if (!root || !canvas) return;
+
+    const modelUrl = root.dataset.model || '/models/motorcycle.glb';
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, root.clientWidth / root.clientHeight, 0.1, 100);
+    camera.position.set(3.5, 1.8, 3.8);
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance',
+    });
+    renderer.setSize(root.clientWidth, root.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
+
+    const controls = new OrbitControls(camera, canvas);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.enableZoom = false;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 1.6;
+    controls.maxPolarAngle = Math.PI / 2 + 0.05;
+    controls.minPolarAngle = Math.PI / 4;
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.6);
+    scene.add(ambientLight);
+
+    const sunLight = new THREE.DirectionalLight(0xffffff, 2.2);
+    sunLight.position.set(6, 9, 6);
+    scene.add(sunLight);
+
+    const redRimLight = new THREE.PointLight(0xdc2626, 2.5, 12);
+    redRimLight.position.set(-4, 2, -3);
+    scene.add(redRimLight);
+
+    const fillLight = new THREE.DirectionalLight(0xf8fafc, 1.2);
+    fillLight.position.set(-5, 4, -4);
+    scene.add(fillLight);
+
+    const gridHelper = new THREE.GridHelper(8, 12, 0xfca5a5, 0xe2e8f0);
+    gridHelper.position.y = -0.7;
+    scene.add(gridHelper);
+
+    let currentModel: THREE.Group | null = null;
+    const loader = new GLTFLoader();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+    loader.setDRACOLoader(dracoLoader);
+
+    loader.load(
+      modelUrl,
+      (gltf) => {
+        currentModel = gltf.scene;
+
+        const box = new THREE.Box3().setFromObject(currentModel);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        const maxAxis = Math.max(size.x, size.y, size.z);
+
+        currentModel.position.sub(center);
+        currentModel.position.y += (size.y / 2) - 0.7;
+        const scaleFactor = 2.2 / maxAxis;
+        currentModel.scale.setScalar(scaleFactor);
+
+        scene.add(currentModel);
+
+        if (loaderElem) {
+          loaderElem.classList.add('fade-out');
+        }
+      },
+      undefined,
+      (error) => {
+        console.error('Failed to load 3D bike model:', error);
+        if (loaderElem) {
+          loaderElem.innerHTML = '<span style="color:#dc2626;">3D मोडेल लोड हुन सकेन</span>';
+        }
+      }
+    );
+
+    let animationFrameId: number;
+    function animate() {
+      animationFrameId = requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    const resizeObserver = new ResizeObserver(() => {
+      if (!root) return;
+      const width = root.clientWidth;
+      const height = root.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    });
+    resizeObserver.observe(root);
+
+    window.addEventListener('beforeunload', () => {
+      cancelAnimationFrame(animationFrameId);
+      renderer.dispose();
+      dracoLoader.dispose();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBikeScene);
+  } else {
+    initBikeScene();
+  }
+</script>

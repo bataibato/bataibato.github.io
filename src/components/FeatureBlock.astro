@@ -1,0 +1,45 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const { icon, title, description } = Astro.props;
+---
+
+<div class="feature-item-box surface-panel reveal-item">
+  <div class="icon-box">
+    <img src={icon} alt="" width="24" height="24" loading="lazy" class="lucide-icon-red" />
+  </div>
+  <h3 class="feature-title heading-md" style="font-size: 1.25rem;">{title}</h3>
+  <p class="feature-desc text-muted">{description}</p>
+</div>
+
+<style>
+  .feature-item-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .feature-item-box:hover {
+    transform: translateY(-3px);
+    border-color: #cbd5e1;
+    box-shadow: var(--bb-shadow-hover);
+  }
+
+  .feature-title {
+    margin-top: 0.25rem;
+    margin-bottom: 0.65rem;
+    color: var(--bb-text);
+  }
+
+  .feature-desc {
+    margin: 0;
+    font-size: 0.96rem;
+    line-height: 1.6;
+  }
+</style>

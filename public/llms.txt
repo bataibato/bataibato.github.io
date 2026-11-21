@@ -1,0 +1,31 @@
+# BataiBato
+
+> BataiBato (बाटैबाटो) is Nepal's community driven ride sharing platform, starting from Sindhuli district.
+
+## Core Pages
+- [Home (Nepali)](https://bataibato.github.io/): Official landing page in Nepali with app overview, vehicle types, and download links
+- [Home (English)](https://bataibato.github.io/en/): Official landing page in English
+- [Features (Nepali)](https://bataibato.github.io/features/): Instant ride matching, fair fare splitting, GPS tracking, verified drivers, in app chat, scheduled rides
+- [Features (English)](https://bataibato.github.io/en/features/): English features showcase
+- [How It Works (Nepali)](https://bataibato.github.io/how-it-works/): Four step guide covering download, route selection, riding, and fair payment
+- [How It Works (English)](https://bataibato.github.io/en/how-it-works/): English step by step guide
+- [About (Nepali)](https://bataibato.github.io/about/): Mission, Sindhuli origin story, team, and Nepali community values
+- [About (English)](https://bataibato.github.io/en/about/): English story and company mission
+- [Download (Nepali)](https://bataibato.github.io/download/): Google Play Store link, QR code, app screenshots, system requirements
+- [Download (English)](https://bataibato.github.io/en/download/): English download page
+- [Contact (Nepali)](https://bataibato.github.io/contact/): Support email, phone numbers, and office in Sindhuli
+- [Contact (English)](https://bataibato.github.io/en/contact/): English contact information
+- [FAQ (Nepali)](https://bataibato.github.io/faq/): Common questions about rides, digital payments, safety, and accounts
+- [FAQ (English)](https://bataibato.github.io/en/faq/): English frequent questions
+- [Privacy Policy](https://bataibato.github.io/privacy/): Comprehensive GDPR and Nepal privacy compliance, data handling, and deletion instructions
+- [Terms of Service](https://bataibato.github.io/terms/): Legal terms, user conduct, rider and driver obligations, and dispute resolution
+
+## Key Facts
+- Vehicle options: Motorcycle, Scooter, Auto Rickshaw, Car
+- Launch district: Sindhuli, Nepal (Kamalamai, Sindhulimadhi, and surrounding routes)
+- Target market: Commuters, students, tourists, and daily travelers across Nepal
+- Mobile platform: Android via Google Play Store
+- Package identification: com.bataibato.app
+- Currency: Nepalese Rupee (NPR)
+- Supported payment methods: Cash, eSewa, Khalti, and digital wallets
+- Support contact: support@bataibato.com
