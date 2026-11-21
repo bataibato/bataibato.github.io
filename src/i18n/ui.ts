@@ -38,14 +38,14 @@ export const ui = {
     // Vehicles Showcase
     'vehicles.badge': 'सवारी विकल्पहरू',
     'vehicles.title': 'तपाईंको आवश्यकता अनुसारको सवारी रोज्नुहोस्',
-    'vehicles.lead': 'मोटरसाइकल, स्कुटर, अटो रिक्सा र कार, सबै प्रकारका सवारी अब औंलाको एक स्पर्शमै उपलब्ध छन्।',
-    'vehicles.motorcycle': 'मोटरसाइकल',
+    'vehicles.lead': 'मोटरसाइकल, विद्युतीय अटो, पेट्रोल अटो र कार, सबै प्रकारका सवारी अब औंलाको एक स्पर्शमै उपलब्ध छन्।',
+    'vehicles.motorcycle': 'मोटरसाइकल (बाइक)',
     'vehicles.motorcycleDesc': 'छिटो र किफायती यात्रा, १ जना यात्रुका लागि उत्तम।',
-    'vehicles.scooter': 'स्कुटर',
-    'vehicles.scooterDesc': 'सहरका साँघुरा गल्लीहरूमा सहज र सरल यात्रा।',
-    'vehicles.rickshaw': 'अटो रिक्सा',
-    'vehicles.rickshawDesc': 'सामान र परिवारसँगको छोटो तथा मध्यम दूरीको यात्रा।',
-    'vehicles.car': 'कार',
+    'vehicles.electricAuto': 'विद्युतीय अटो (ई-रिक्सा)',
+    'vehicles.electricAutoDesc': 'वातावरणमैत्री, ब्याट्रीबाट चल्ने शान्त र आरामदायी स्थानीय यात्रा।',
+    'vehicles.petrolAuto': 'पेट्रोल अटो (अटो रिक्सा)',
+    'vehicles.petrolAutoDesc': 'सामान र परिवारसँगको भरपर्दो यात्रा, उकालो र लामो रुटका लागि उपयुक्त।',
+    'vehicles.car': 'कार (क्याब)',
     'vehicles.carDesc': 'लामो दूरी, आरामदायी यात्रा र समूहका लागि उपयुक्त।',
 
     // Features Section
@@ -128,14 +128,14 @@ export const ui = {
     // Vehicles Showcase
     'vehicles.badge': 'Vehicle Choices',
     'vehicles.title': 'Choose Your Ride for Any Route',
-    'vehicles.lead': 'From quick motorbike rides to comfortable cars and family auto rickshaws, choose what suits your schedule.',
-    'vehicles.motorcycle': 'Motorcycle',
+    'vehicles.lead': 'From quick motorbike rides to eco friendly electric autos, petrol rickshaws, and comfortable cars, choose what suits your journey.',
+    'vehicles.motorcycle': 'Bike (Motorcycle)',
     'vehicles.motorcycleDesc': 'Fast, agile, and cost effective for solo city commutes.',
-    'vehicles.scooter': 'Scooter',
-    'vehicles.scooterDesc': 'Smooth and convenient riding through local streets and marketplaces.',
-    'vehicles.rickshaw': 'Auto Rickshaw',
-    'vehicles.rickshawDesc': 'Perfect for family shopping, local errands, and short group hops.',
-    'vehicles.car': 'Car',
+    'vehicles.electricAuto': 'Electric Auto (E-Rickshaw)',
+    'vehicles.electricAutoDesc': 'Eco friendly battery powered ride, quiet and comfortable for town travel.',
+    'vehicles.petrolAuto': 'Petrol Auto Rickshaw',
+    'vehicles.petrolAutoDesc': 'Dependable 3-wheeler for family errands, luggage, and regional routes.',
+    'vehicles.car': 'Car (Cab)',
     'vehicles.carDesc': 'Spacious and comfortable option for group travels and longer routes.',
 
     // Features Section

@@ -11,6 +11,7 @@ const { modelPath = '/models/motorcycle.glb' } = Astro.props;
     <div class="spinner"></div>
     <span class="loading-label">3D सवारी लोड हुँदैछ...</span>
   </div>
+  <div class="ground-contact-shadow"></div>
   <canvas id="bike-webgl-canvas"></canvas>
   <div class="interaction-hint">
     <img src="/icons/ui/compass.svg" alt="" width="14" height="14" class="hint-icon" />
@@ -34,11 +35,27 @@ const { modelPath = '/models/motorcycle.glb' } = Astro.props;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   }
 
+  .ground-contact-shadow {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 58%;
+    height: 26px;
+    background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.16) 0%, rgba(15, 23, 42, 0.04) 45%, transparent 75%);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(4px);
+    z-index: 0;
+  }
+
   #bike-webgl-canvas {
     width: 100%;
     height: 100%;
     outline: none;
     cursor: grab;
+    position: relative;
+    z-index: 1;
   }
 
   #bike-webgl-canvas:active {
@@ -160,10 +177,6 @@ const { modelPath = '/models/motorcycle.glb' } = Astro.props;
     const fillLight = new THREE.DirectionalLight(0xf8fafc, 1.2);
     fillLight.position.set(-5, 4, -4);
     scene.add(fillLight);
-
-    const gridHelper = new THREE.GridHelper(8, 12, 0xfca5a5, 0xe2e8f0);
-    gridHelper.position.y = -0.7;
-    scene.add(gridHelper);
 
     let currentModel: THREE.Group | null = null;
     const loader = new GLTFLoader();
